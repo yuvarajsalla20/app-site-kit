@@ -1,0 +1,301 @@
+/* app-site-kit · layout.css · one quiet, premium look for an app's web pages (Features, Privacy, Support).
+   Same parts on every page: the header (logo, page links), a dark hero, the welcome note, full-width bands,
+   and the footer. Colours come from the variables below; an app sets its own in site.config.mjs (theme). */
+:root{--ink:#0b1f1d;--ink-rgb:11,31,29;--body:#2c4440;--sub:#4a625e;--mute:#7c918d;--line:#e2ebe9;--line-strong:#c5d2cf;--soft:#f3f8f7;
+  --accent:#0f766e;--accent-bright:#14b8a6;--accent-soft:#d3eee9;--glow:rgba(20,184,166,.35);
+  --night:#04110f;--night2:#0a2622;--hero-mid:#0f5a53;--hero-deep:#072d29;
+  --dark-text:#b8ccc8;--dark-sub:#a9bfbb;--dark-mute:#7f9a95;--dark-link:#cfe0dc;--dark-faint:#5f7974;
+  --gold:#e7bd6f;--gold2:#c8963e;--r:22px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:#fff;color:var(--ink);font:17px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+.narrow{max-width:760px}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Header: sticky, frosted. Script logo left, page links, app icon right. */
+.hd{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.82);-webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid rgba(var(--ink-rgb),.06)}
+.hd .wrap{display:flex;align-items:center;gap:28px;height:68px}
+.wm{display:block;line-height:0;margin-right:auto}
+.wm img{height:44px;width:auto}
+.top{display:flex;gap:26px}
+.top a{font-size:14px;font-weight:500;letter-spacing:.1px;text-decoration:none;color:var(--sub);padding:6px 0;border-bottom:1.5px solid transparent}
+.top a:hover{color:var(--ink)}
+.top a[aria-current]{color:var(--ink);border-bottom-color:var(--ink)}
+.hd .appicon-s{width:34px;height:34px;border-radius:9px;display:block}
+
+/* Bands: full-width sections with lots of air. */
+.band{padding:56px 0}
+.band.soft{background:var(--soft)}
+.band.dark{background:var(--night);color:#fff}
+.band.tight{padding:88px 0}
+.eyebrow{margin:0 0 14px;font-size:13px;font-weight:600;letter-spacing:2.4px;text-transform:uppercase;color:var(--accent)}
+.dark .eyebrow{color:var(--accent-bright)}
+.eyebrow.g,.dark .eyebrow.g{color:var(--gold)}
+h1,h2,h3{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+h1{font-size:clamp(52px,8.4vw,104px);line-height:.98;letter-spacing:-.045em;font-weight:600}
+h2{font-size:clamp(34px,5.2vw,60px);line-height:1.04;letter-spacing:-.035em;font-weight:600}
+h3{font-size:20px;line-height:1.3;letter-spacing:-.01em;font-weight:600}
+.intro{text-align:center;max-width:720px;margin:0 auto 32px}
+.intro p{font-size:20px;line-height:1.55;color:var(--sub);margin:12px 0 0}
+.intro p.eyebrow{font-size:13px;line-height:1.4;margin:0 0 10px;color:var(--accent)}
+.dark .intro p.eyebrow{color:var(--accent-bright)}
+.dark .intro p{color:var(--dark-sub)}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:radial-gradient(80% 60% at 50% 72%,var(--hero-mid) 0%,var(--hero-deep) 45%,var(--night) 100%);color:#fff;text-align:center;padding:64px 0 0}
+.hero .eyebrow{color:var(--accent-bright)}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#f3d08c,#e7a94a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:21px;line-height:1.55;color:var(--dark-text);max-width:40ch;margin:20px auto 28px}
+.cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center}
+.store{display:inline-flex;align-items:center;gap:12px;background:#fff;color:#000;text-decoration:none;border-radius:999px;padding:12px 26px 12px 20px;line-height:1.1;text-align:left}
+.store svg{width:26px;height:26px}
+.store small{display:block;font-size:11px;color:#555;letter-spacing:.2px}
+.store b{display:block;font-size:18px;font-weight:600;letter-spacing:-.2px}
+.dark-store{background:#000;color:#fff;border:1px solid rgba(255,255,255,.22)}.dark-store small{color:#bbb}
+.link{display:inline-flex;align-items:center;gap:8px;font-size:17px;font-weight:500;text-decoration:none;color:#fff;padding:14px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.28)}
+.link:hover{background:rgba(255,255,255,.08)}
+.fine{font-size:13px;letter-spacing:.3px;color:var(--dark-mute);margin:16px 0 0}
+.stage{position:relative;z-index:2;height:420px;max-width:880px;margin:32px auto 0}
+.stage .ring{position:absolute;left:50%;top:58%;border:1px solid rgba(255,255,255,.09);border-radius:50%;transform:translate(-50%,-50%)}
+.stage .glow{position:absolute;left:50%;top:58%;width:360px;height:360px;transform:translate(-50%,-50%);background:radial-gradient(circle,var(--glow),transparent 65%);filter:blur(10px)}
+.stage .big{position:absolute;left:50%;top:58%;width:176px;height:176px;border-radius:40px;transform:translate(-50%,-50%);box-shadow:0 40px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.08);animation:bob 6s ease-in-out infinite}
+@keyframes bob{50%{transform:translate(-50%,-53%)}}
+.chip{position:absolute;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.96);color:var(--ink);border-radius:18px;padding:11px 18px 11px 11px;box-shadow:0 20px 40px rgba(0,0,0,.35);white-space:nowrap;text-align:left}
+.chip .t{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center}
+.chip .t svg{width:19px;height:19px}
+.chip b{display:block;font-size:14px;line-height:1.25}
+.chip small{display:block;font-size:12px;color:var(--mute)}
+.chip.c1{left:2%;top:90px}.chip.c2{right:2%;top:60px}.chip.c3{left:9%;bottom:70px}.chip.c4{right:8%;bottom:110px}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(rgba(4,17,15,0),var(--night));pointer-events:none}
+
+/* Welcome note: the same warm line on every page, quiet and centered. */
+.welcome{background:var(--soft);padding:28px 0;text-align:center}
+.welcome .ic{width:44px;height:44px;margin:0 auto 10px;border-radius:50%;background:#fff;color:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(var(--ink-rgb),.08)}
+.welcome b{display:block;font-size:22px;font-weight:600;letter-spacing:-.02em}
+.welcome p{margin:8px auto 0;max-width:56ch;color:var(--sub);font-size:17px}
+
+/* Use cases */
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.use{border:1px solid var(--line);border-radius:var(--r);padding:28px 28px 12px;background:#fff}
+.use .t{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center}
+.use h3{font-size:24px;margin:18px 0 6px}
+.use p{color:var(--sub);margin:0}
+.use ul{list-style:none;padding:0;margin:18px 0 0}
+.use li{display:flex;justify-content:space-between;padding:14px 0;border-top:1px solid var(--line);font-size:15px;font-weight:500}
+.use li span{color:var(--mute);font-weight:400}
+
+/* Reels */
+.reel-row{display:flex;gap:28px;justify-content:center;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 8px}
+.reel-row figure{flex:0 1 300px;min-width:0;margin:0;scroll-snap-align:center;position:relative}
+.reel-row video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:28px;background:var(--accent-soft);box-shadow:0 30px 60px rgba(var(--ink-rgb),.16);cursor:pointer}
+.reel-row figure.muted::after{content:"";position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:15px;background:rgba(0,0,0,.45) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='11 5 6 9 2 9 2 15 6 15 11 19 11 5'/%3E%3Cline x1='23' y1='9' x2='17' y2='15'/%3E%3Cline x1='17' y1='9' x2='23' y2='15'/%3E%3C/svg%3E") center/16px no-repeat;pointer-events:none}
+.reel-row figcaption{font-size:15px;font-weight:600;text-align:center;margin-top:12px;letter-spacing:-.01em}
+.reel-row figure.p figcaption{color:var(--gold2)}
+
+/* Feature grid: hairlines, no boxes. */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.grid > div{padding:28px 36px 28px 0;border-bottom:1px solid var(--line)}
+.grid > div:not(:nth-child(3n+1)){padding-left:36px;border-left:1px solid var(--line)}
+.grid .ic{color:var(--accent)}
+.grid h3{margin:14px 0 6px}
+.grid p{margin:0;color:var(--sub);font-size:16px}
+.dark .grid,.dark .grid > div{border-color:rgba(231,189,111,.16)}
+.dark .grid .ic{color:var(--gold)}
+.dark .grid p{color:var(--dark-sub)}
+
+/* Premium band */
+.band.premium{background:radial-gradient(70% 50% at 50% 0%,#2a1f0c 0%,#0d0a05 60%,#070604 100%)}
+.crown{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(231,189,111,.4);color:var(--gold);border-radius:999px;padding:8px 18px;font-size:12px;font-weight:600;letter-spacing:2.4px;text-transform:uppercase;margin-bottom:26px}
+.crown svg{width:16px;height:16px;fill:currentColor}
+.premium h2 em{font-style:normal;background:linear-gradient(90deg,#f6dca2,#d39a3e);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Compare */
+.cmp{border-top:1px solid var(--ink)}
+.cmp table{width:100%;border-collapse:collapse;font-size:16px}
+.cmp th,.cmp td{padding:13px 8px;border-bottom:1px solid var(--line);text-align:center;width:22%}
+.cmp th:first-child,.cmp td:first-child{text-align:left;width:auto}
+.cmp thead th{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--mute);padding:16px 8px}
+.cmp thead th.pp{color:var(--gold2)}
+.cmp tr.grp td{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--mute);padding-top:24px}
+.cmp td.pp{font-weight:600}
+.cmp .y{color:var(--accent)}.cmp td.pp.y,.cmp .pp .y{color:var(--gold2)}
+.cmp .n{color:var(--line-strong)}
+.cmp-note{color:var(--mute);font-size:15px;margin:16px 0 0;text-align:center}
+
+/* FAQ */
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;font-size:20px;font-weight:500;letter-spacing:-.01em;padding:20px 44px 20px 0;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:12px;height:12px;border-right:1.6px solid var(--ink);border-bottom:1.6px solid var(--ink);transform:translateY(-70%) rotate(45deg);transition:transform .25s}
+.faq details[open] summary::after{transform:translateY(-20%) rotate(225deg)}
+.faq details p{color:var(--sub);margin:-6px 0 0;padding:0 44px 20px 0;font-size:17px}
+
+/* Support */
+.support{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.support a{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:var(--r);padding:28px;transition:border-color .2s,transform .2s}
+.support a:hover{border-color:var(--ink);transform:translateY(-2px)}
+.support .ic{color:var(--accent)}
+.support h3{margin:14px 0 4px;font-size:22px}
+.support p{margin:0;color:var(--sub);word-break:break-word}
+.support .go{display:inline-block;margin-top:12px;font-weight:600;color:var(--accent)}
+
+/* Final call */
+.final{text-align:center;background:radial-gradient(70% 70% at 50% 100%,var(--hero-mid),var(--night) 70%)}
+.final img{width:88px;height:88px;border-radius:24px;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+.final h2{margin:20px 0 10px}
+.final p{color:var(--dark-sub);font-size:20px;margin:0 0 24px}
+
+/* Footer: links, then the version line. Same on every page. */
+footer{background:var(--night);color:var(--dark-mute);font-size:13px;border-top:1px solid rgba(255,255,255,.06)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;padding-top:28px;padding-bottom:28px}
+footer nav{display:flex;gap:24px;margin-right:auto}
+footer a{color:var(--dark-link);text-decoration:none}
+footer a:hover{color:#fff}
+footer .ver{color:var(--dark-faint)}
+
+/* Privacy: promises, then a side index beside the policy text. */
+.promises{display:grid;grid-template-columns:repeat(4,1fr);max-width:960px;margin:40px auto 0;border-top:1px solid rgba(255,255,255,.12);text-align:left}
+.promises div{padding:32px 24px 0 0}
+.promises div + div{padding-left:24px;border-left:1px solid rgba(255,255,255,.12)}
+.promises .ic{color:var(--accent-bright)}
+.promises b{display:block;font-size:20px;font-weight:600;letter-spacing:-.01em;margin:16px 0 4px}
+.promises span:not(.ic){display:block;color:var(--dark-sub);font-size:15px;line-height:1.5}
+.policy{display:grid;grid-template-columns:220px 1fr;gap:56px;align-items:start}
+.toc{position:sticky;top:104px;font-size:14px}
+.toc b{display:block;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--mute);font-weight:600;margin-bottom:14px}
+.toc a{display:block;color:var(--sub);text-decoration:none;padding:7px 0 7px 14px;border-left:1.5px solid var(--line)}
+.toc a:hover{color:var(--ink);border-left-color:var(--ink)}
+.doc section{padding:0 0 24px;margin:0 0 28px;border-bottom:1px solid var(--line)}
+.doc section:last-child{border:0;margin:0}
+.doc h2{font-size:clamp(30px,3.6vw,40px);margin:0 0 16px}
+.doc h3{font-size:18px;margin:22px 0 6px}
+.doc h2 + h3{margin-top:0}
+.doc section > :last-child{margin-bottom:0}
+.doc p{margin:0 0 14px;color:var(--body);font-size:17px;line-height:1.7}
+.doc ul.who{list-style:none;padding:0;margin:4px 0 0}
+.doc ul.who li{padding:14px 0;border-top:1px solid var(--line);font-size:17px;line-height:1.65;color:var(--body)}
+.doc ul.who li b{color:var(--ink);font-weight:600}
+.doc .callout{background:var(--night);color:#fff;border-radius:var(--r);padding:36px 40px}
+.doc .callout h2{color:#fff}
+.doc .callout ul{list-style:none;padding:0;margin:0}
+.doc .callout li{padding:18px 0 18px 36px;border-top:1px solid rgba(255,255,255,.1);color:var(--dark-text);position:relative;line-height:1.65}
+.doc .callout li:first-child{border-top:0;padding-top:4px;color:#fff;font-size:20px;font-weight:500}
+.doc .callout li::before{content:"";position:absolute;left:4px;top:26px;width:14px;height:8px;border-left:2px solid var(--accent-bright);border-bottom:2px solid var(--accent-bright);transform:rotate(-45deg)}
+.doc .callout li:first-child::before{top:12px}
+.doc .callout b{color:#fff}
+.meta{font-size:14px;color:var(--dark-mute);margin:20px 0 0;letter-spacing:.3px}
+
+@media (max-width:900px){
+  .band{padding:48px 0}
+  .cols3{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  .grid > div,.grid > div:not(:nth-child(3n+1)){padding:36px 24px 40px 0;border-left:0}
+  .grid > div:nth-child(2n){padding-left:24px;border-left:1px solid var(--line)}
+  .dark .grid > div:nth-child(2n){border-left-color:rgba(231,189,111,.16)}
+  .policy{grid-template-columns:1fr;gap:40px}
+  .toc{position:static;display:none}
+  .promises{grid-template-columns:1fr 1fr}
+  .promises div:nth-child(3){padding-left:0;border-left:0}
+  .promises div:nth-child(n+3){margin-top:28px}
+}
+@media (max-width:620px){
+  .wrap{padding:0 20px}
+  .hd .wrap{gap:18px;height:60px}
+  .wm img{height:36px}
+  .top{gap:16px}
+  .hd .appicon-s{display:none}
+  .band{padding:40px 0}
+  .intro{margin-bottom:24px}.intro p{font-size:18px}
+  .hero{padding-top:44px}
+  .hero .sub{font-size:18px}
+  .stage{height:380px;margin-top:24px}
+  .stage .ring,.stage .glow,.stage .big{top:50%}
+  .stage .big{width:128px;height:128px;border-radius:30px}
+  .stage .ring:nth-child(3){display:none}
+  .chip{padding:8px 13px 8px 8px;gap:9px}.chip .t{width:30px;height:30px;border-radius:9px}.chip b{font-size:13px}.chip small{font-size:11px}
+  .chip.c1{left:0;top:16px}.chip.c2{right:0;top:70px}.chip.c3{left:0;bottom:20px}.chip.c4{right:0;bottom:76px}
+  .grid{grid-template-columns:1fr}
+  .grid > div,.grid > div:nth-child(2n){padding:32px 0;border-left:0}
+  .reel-row{justify-content:flex-start;gap:16px;margin:0 -20px;padding:4px 20px 8px}
+  .reel-row figure{flex:0 0 68%}
+  .support{grid-template-columns:1fr}
+  .cmp th,.cmp td{padding:15px 4px;font-size:15px}
+  .cmp thead th{font-size:11px;letter-spacing:1.4px}
+  .faq summary{font-size:18px}
+  .doc .callout{padding:32px 24px;margin:0 -4px}
+  .promises{grid-template-columns:1fr}
+  .promises div,.promises div + div{padding:24px 0 0;border-left:0;margin-top:0}
+  .promises div + div{border-top:1px solid rgba(255,255,255,.12);margin-top:24px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.stage .big{animation:none}}
+/* v2.4 · Compare: Premium as its own obsidian-and-gold column, so it stands apart. */
+.cmp{border-top:0}
+.cmp table{border-collapse:separate;border-spacing:0}
+.cmp thead th{border-bottom:1px solid var(--ink)}
+.cmp td.pp,.cmp th.pp{background:linear-gradient(180deg,#1a1309,#0d0a05);border-bottom-color:rgba(231,189,111,.14);color:#f3d08c;width:26%}
+.cmp td.pp{font-weight:700;font-size:17px}
+.cmp td.pp.y{color:#f3d08c;font-size:19px}
+.cmp thead th.pp{border-radius:22px 22px 0 0;padding:26px 8px 18px;border-bottom:1px solid rgba(231,189,111,.35);box-shadow:0 -18px 40px -12px rgba(200,150,62,.45)}
+.cmp thead th.pp .cr{display:block;width:26px;height:26px;margin:0 auto 8px;fill:#e7bd6f}
+.cmp thead th.pp b{display:block;font-size:17px;letter-spacing:3px;background:linear-gradient(90deg,#f6dca2,#e7a94a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cmp thead th.pp small{display:block;margin-top:6px;font-size:10px;letter-spacing:2px;color:#a9916a;font-weight:600}
+.cmp tr.grp td.pp{padding-top:24px}
+.cmp tr.foot td{border-bottom:0;padding:0}
+.cmp tr.foot td.pp{border-radius:0 0 22px 22px;padding:16px 8px 20px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#c8a46a;font-weight:600;box-shadow:0 22px 40px -14px rgba(200,150,62,.45)}
+@media (max-width:560px){.cmp thead th.pp b{font-size:14px;letter-spacing:2px}.cmp thead th.pp small{font-size:9px;letter-spacing:1px}.cmp tr.foot td.pp{font-size:10px;letter-spacing:1px}}
+/* v2.4 · Header: the HringNring script logo, large and centered at the top, links underneath. */
+.hd{position:relative;background:#fff}
+.hd .wrap{flex-direction:column;justify-content:center;gap:10px;height:auto;padding-top:22px;padding-bottom:14px}
+.wm{margin:0 auto}
+.wm img{height:84px;width:auto}
+.top{gap:34px;justify-content:center}
+.hd .appicon-s{display:none}
+/* v2.4 · Compact rhythm: less air between sections on both pages. */
+.band{padding:40px 0}
+.band.tight{padding:56px 0}
+.intro{margin-bottom:24px}
+.intro p{margin-top:10px}
+.hero{padding-top:40px}
+.hero .sub{margin:16px auto 22px}
+.stage{margin-top:20px}
+.welcome{padding:20px 0}
+.grid > div{padding:22px 32px 22px 0}
+.grid > div:not(:nth-child(3n+1)){padding-left:32px}
+.use{padding:24px 24px 8px}
+.final h2{margin:16px 0 8px}
+.final p{margin-bottom:18px}
+.promises{margin-top:28px}
+.promises div{padding-top:24px}
+.doc section{padding-bottom:18px;margin-bottom:20px}
+.doc h3{margin-top:16px}
+@media (max-width:900px){
+  .band{padding:36px 0}
+  .grid > div,.grid > div:not(:nth-child(3n+1)){padding:24px 20px 26px 0}
+  .grid > div:nth-child(2n){padding-left:20px}
+  .promises div:nth-child(n+3){margin-top:20px}
+}
+@media (max-width:620px){
+  .hd .wrap{padding-top:16px;padding-bottom:10px;gap:6px}
+  .wm img{height:64px}
+  .top{gap:26px}
+  .band{padding:32px 0}
+  .intro{margin-bottom:18px}
+  .hero{padding-top:28px}
+  .grid > div,.grid > div:nth-child(2n){padding:20px 0}
+  .promises div + div{margin-top:18px}
+}
+/* v2.4 · Privacy hero: the same app icon with soft rings as Features, without the reminder chips. */
+.stage.mini{height:300px;margin:8px auto 0}
+.stage.mini .ring,.stage.mini .glow,.stage.mini .big{top:50%}
+@media (max-width:620px){.stage.mini{height:250px}.stage.mini .ring:nth-child(3){display:block;width:280px!important;height:280px!important}}
+/* v2.4 · The films are dark now, so their frame is too. */
+.reel-row video{background:var(--night);box-shadow:0 30px 60px rgba(var(--ink-rgb),.28)}
+
+/* Support page cards in three columns when there are three. */
+.support.c3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){.support.c3{grid-template-columns:1fr}}
+/* Footer logo (optional). */
+footer .flogo{height:40px;width:auto;display:block}

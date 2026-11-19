@@ -1,5 +1,5 @@
 /**
- * Turns an app's site config into finished HTML pages. The kit owns the layout (header, sections, footer); the app owns
+ * Turns an app's site config into finished HTML pages (Features, Privacy, Support, About, or any page). The kit owns the layout (header, sections, footer); the app owns
  * every word, link, logo and colour. Text fields are the app's own trusted copy and may hold simple inline HTML
  * (<br>, <em>, <b>, <a>). Only attribute values (links, image paths, alt text) are escaped.
  */
@@ -231,6 +231,43 @@ ${items}
 ${toc}
 <div class="doc">
 ${doc}
+</div>
+</div></section>`;
+  },
+  /**
+   * About: the app's story. An image (or icon) on one side, a title and paragraphs on the other. `reverse: true` puts the
+   * image on the right. `paragraphs` is a list; `signature` is an optional sign-off line ("— The PAL team").
+   */
+  story(s, { icon }, i) {
+    const hid = `s${i}-h`;
+    const art = s.image
+      ? `<div class="art"><img src="${attr(s.image)}" alt="${attr(s.alt ?? '')}"></div>`
+      : s.icon ? `<div class="art"><span class="ic">${icon(s.icon, 44)}</span></div>` : '';
+    const paras = (s.paragraphs ?? (s.text ? [s.text] : [])).map((p) => `<p>${p}</p>`).join('\n');
+    return `<section class="band${s.soft ? ' soft' : ''}"${idOf(s)}${labelled(s, hid)}><div class="wrap story${s.reverse ? ' rev' : ''}${art ? '' : ' solo'}">
+${art}
+<div class="words">${s.eyebrow ? `<p class="eyebrow">${s.eyebrow}</p>` : ''}${s.title ? `<h2 id="${hid}">${s.title}</h2>` : ''}
+${paras}${s.signature ? `\n<p class="sig">${s.signature}</p>` : ''}</div>
+</div></section>`;
+  },
+  /** About: a row of 2 to 4 big facts ("2026" Started, "4" Languages). Each item is { value, label }. */
+  facts(s, _ctx, i) {
+    const hid = `s${i}-h`;
+    const items = s.items.map((f) => `<div><b>${f.value}</b><span>${f.label}</span></div>`).join('');
+    return `<section class="band${s.dark ? ' dark' : s.soft === false ? '' : ' soft'}"${idOf(s)}${labelled(s, hid)}><div class="wrap">
+${intro(s, hid)}
+<div class="facts n${Math.min(s.items.length, 4)}">${items}</div>
+</div></section>`;
+  },
+  /** About: the people behind the app. Each is { name, role, text, photo? } (initials are shown when there is no photo). */
+  people(s, _ctx, i) {
+    const hid = `s${i}-h`;
+    const initials = (n) => String(n).replace(/<[^>]+>/g, '').split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+    const items = s.items.map((p) => `<article class="person">${p.photo ? `<img src="${attr(p.photo)}" alt="${attr(p.alt ?? p.name)}">` : `<span class="av" aria-hidden="true">${initials(p.name)}</span>`}<h3>${p.name}</h3>${p.role ? `<p class="role">${p.role}</p>` : ''}${p.text ? `<p>${p.text}</p>` : ''}</article>`).join('\n');
+    return `<section class="band${s.soft ? ' soft' : ''}"${idOf(s)}${labelled(s, hid)}><div class="wrap narrow">
+${intro(s, hid)}
+<div class="people${s.items.length === 1 ? ' one' : ''}">
+${items}
 </div>
 </div></section>`;
   },

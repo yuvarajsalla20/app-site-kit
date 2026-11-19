@@ -58,8 +58,26 @@ test('attribute values are escaped', () => {
 test('buildSite writes each page and site.css with the theme on top', async () => {
   const out = await mkdtemp(join(tmpdir(), 'site-'));
   const files = await buildSite(site, out);
-  assert.equal(files.length, 4);
+  assert.equal(files.length, 5);
   const css = await readFile(join(out, 'site.css'), 'utf8');
   assert.match(css, /\.hd\{/);
   assert.match(css, /:root\{--accent:#2f5bd3/);
+});
+
+test('about: story, facts and people, with the About link marked in the header', () => {
+  const html = renderPage(site, 'about');
+  assert.match(html, /<a href="\/about" aria-current="page">About<\/a>/);
+  assert.match(html, /<div class="wrap story">\n<div class="art"><img src="\/icon.png" alt=""><\/div>/);
+  assert.match(html, /<p class="sig">— The Sample App team<\/p>/);
+  assert.match(html, /<div class="facts n3"><div><b>2026<\/b><span>Started<\/span><\/div>/);
+  assert.match(html, /<span class="av" aria-hidden="true">SM<\/span><h3>Sample Maker<\/h3><p class="role">Founder<\/p>/);
+});
+
+test('about sections are optional: a story with no image is one column, reverse swaps sides', () => {
+  const s = { ...site, pages: { x: { sections: [{ type: 'story', title: 'Hi', text: 'Only words.' }, { type: 'story', reverse: true, icon: 'heart', title: 'Two' }] } } };
+  const html = renderPage(s, 'x');
+  assert.match(html, /<div class="wrap story solo">/);
+  assert.match(html, /<p>Only words.<\/p>/);
+  assert.match(html, /<div class="wrap story rev">/);
+  assert.match(html, /id="i-heart"/);
 });

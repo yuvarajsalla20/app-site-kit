@@ -1,7 +1,7 @@
 {
   "name": "app-site-kit",
-  "version": "1.0.0",
-  "description": "One layout for an app's web pages (Features, Privacy, Support): the app passes its header, footer, colours and words.",
+  "version": "1.1.0",
+  "description": "One layout for an app's web pages (Features, Privacy, Support, About): the app passes its header, footer, colours and words.",
   "type": "module",
   "main": "src/index.mjs",
   "exports": { ".": "./src/index.mjs", "./layout.css": "./src/layout.css" },

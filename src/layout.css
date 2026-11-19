@@ -299,3 +299,33 @@ footer .ver{color:var(--dark-faint)}
 @media (max-width:900px){.support.c3{grid-template-columns:1fr}}
 /* Footer logo (optional). */
 footer .flogo{height:40px;width:auto;display:block}
+/* v1.1 · About: story (image beside words), facts (big numbers), people (who makes the app). Only pages that use them change. */
+.story{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center}
+.story.rev .art{order:2}
+.story.solo{grid-template-columns:1fr;max-width:760px}
+.story .art{display:flex;justify-content:center}
+.story .art img{width:100%;max-width:420px;height:auto;border-radius:var(--r);box-shadow:0 30px 60px rgba(var(--ink-rgb),.14)}
+.story .art .ic{width:160px;height:160px;border-radius:40px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center}
+.story .art .ic svg{width:64px;height:64px;stroke-width:1.5}
+.story h2{margin:0 0 18px}
+.story p{margin:0 0 14px;color:var(--body);font-size:18px;line-height:1.7}
+.story p.eyebrow{font-size:13px;line-height:1.4;margin:0 0 12px;color:var(--accent)}
+.story p.sig{margin-top:22px;color:var(--sub);font-style:italic}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);text-align:center}
+.facts.n2{grid-template-columns:repeat(2,1fr)}.facts.n3{grid-template-columns:repeat(3,1fr)}.facts.n1{grid-template-columns:1fr}
+.facts div{padding:26px 16px;border-bottom:1px solid var(--line)}
+.facts div + div{border-left:1px solid var(--line)}
+.facts b{display:block;font-size:clamp(36px,4.6vw,52px);line-height:1.05;letter-spacing:-.03em;font-weight:600;color:var(--accent)}
+.facts span{display:block;margin-top:8px;color:var(--sub);font-size:15px}
+.dark .facts,.dark .facts div{border-color:rgba(255,255,255,.12)}
+.dark .facts b{color:var(--gold)}.dark .facts span{color:var(--dark-sub)}
+.people{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.people.one{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+.person{border:1px solid var(--line);border-radius:var(--r);padding:28px;text-align:center;background:#fff}
+.person img,.person .av{width:88px;height:88px;border-radius:50%;display:block;margin:0 auto 14px;object-fit:cover}
+.person .av{display:flex;align-items:center;justify-content:center;background:var(--accent-soft);color:var(--accent);font-size:28px;font-weight:600;letter-spacing:.5px}
+.person h3{font-size:22px}
+.person p{margin:6px 0 0;color:var(--sub)}
+.person p.role{margin-top:2px;font-size:13px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent)}
+@media (max-width:900px){.story{grid-template-columns:1fr;gap:28px}.story.rev .art{order:0}.story .art img{max-width:360px}.facts,.facts.n3{grid-template-columns:1fr 1fr}.facts div:nth-child(odd){border-left:0}}
+@media (max-width:620px){.story .art .ic{width:120px;height:120px;border-radius:30px}.story p{font-size:17px}.people{grid-template-columns:1fr}}

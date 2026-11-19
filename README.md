@@ -1,6 +1,6 @@
 # app-site-kit
 
-One layout for an app's web pages: **Features**, **Privacy** and **Support** (or any page you like). The kit holds the
+One layout for an app's web pages: **Features**, **Privacy**, **Support** and **About** (or any page you like). The kit holds the
 layout and the look; each app passes only its own header, footer, colours and words. No app re-builds the pages.
 
 The look is HringNring's site (v2.4): a header with the logo centred and page links under it, a dark hero, full-width
@@ -14,7 +14,7 @@ bands with lots of air, and a dark footer. Plain HTML and one CSS file, no JavaS
    "scripts": { "site": "app-site-kit site/site.config.mjs public" }
    ```
 2. Write `site/site.config.mjs` (see `example/site.config.mjs`, or PAL's for a full one).
-3. `npm run site` writes `public/features.html`, `privacy.html`, `support.html` and `site.css`. Images stay in `public/`.
+3. `npm run site` writes one `<page>.html` per page (`features.html`, `privacy.html`, `support.html`, `about.html`) and `site.css`. Images stay in `public/`.
 4. Deploy as before (`firebase deploy --only hosting`). Turn on `"cleanUrls": true` in firebase.json for `/features` links.
 
 ## site.config.mjs
@@ -30,6 +30,7 @@ export default {
     features: { title, description?, version?, sections: [ … ] },   // writes features.html
     privacy:  { … },
     support:  { … },
+    about?:   { … },                                                // optional: writes about.html
   },
 };
 ```
@@ -50,10 +51,27 @@ Text fields are your own copy and may hold simple HTML (`<br>`, `<em>` for the g
 | `faq` | Questions that open on a tap | `eyebrow, title, items: [{q, a}]` |
 | `support` | Whole-card links (email, privacy, …), 2 or 3 across | `title, text, items: [{icon, title, text, action, href}]` |
 | `policy` | Long document with an "On This Page" index | `sections: [{title, short?, blocks: [{h, p}], list: [...], intro, after, callout: true + points, html}]`, `numbered`, `tocTitle` |
+| `story` | About: an image (or icon) beside a title and paragraphs | `eyebrow, title, paragraphs: [...]` (or `text`), `image, alt` or `icon`, `reverse, signature, soft` |
+| `facts` | About: 2 to 4 big numbers with labels | `eyebrow, title, text, items: [{value, label}], dark, soft: false` |
+| `people` | About: who makes the app (initials when no photo) | `eyebrow, title, text, items: [{name, role, text, photo, alt}], soft` |
 | `final` | Closing dark band | `image, title, text` |
 | `html` | Your own HTML in a band | `html, soft, narrow` |
 
 Every section also takes `id` (for `#links`).
+
+### Page recipes
+
+Each page is just a list of sections, so an app can mix them freely. The usual four (all in `example/site.config.mjs`):
+
+| Page | Sections, top to bottom |
+|---|---|
+| Features | `hero` (with chips) · `welcome` · `grid` · `grid premium` · `compare` · `faq` · `final` |
+| Privacy | `hero` (with promises and `meta` date) · `policy` |
+| Support | `hero` · `support` · `faq` |
+| About | `hero` · `story` · `facts` · `grid` (what you believe) · `people` · `support` (say hello) |
+
+A page is only written when the app lists it in `pages`, and a link only shows when the app puts it in `header.links` or
+`footer.links`. So an app with no About page simply leaves it out, and nothing changes.
 
 ### Theme keys
 
@@ -62,8 +80,8 @@ darkSub, darkMute, darkLink, gold, gold2, radius`. A key you leave out keeps the
 
 ### Icons
 
-`arrow ban bell book brief camera chart check clock crown down eye eyeoff file gem gift globe grid heart help lock mail
-msg phone refresh repeat shield store tag trash trend type user-x users vol watch wind zap`, plus any you add in `icons`.
+`arrow ban bell book brief camera chart check clock crown down eye eyeoff file gem gift globe grid heart help info lock mail
+msg phone pin refresh repeat shield store tag trash trend type user-x users vol watch wind zap`, plus any you add in `icons`.
 
 ## Develop
 

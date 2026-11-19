@@ -1,8 +1,9 @@
-/** A small sample site: one page of each kind. Build: npm run example (writes example/public). */
+/** A small sample site: Features, Privacy, Support and About. Build: npm run example (writes example/public). */
 const links = [
   { label: 'Features', href: '/features', page: 'features' },
   { label: 'Privacy', href: '/privacy', page: 'privacy' },
   { label: 'Support', href: '/support', page: 'support' },
+  { label: 'About', href: '/about', page: 'about' },
 ];
 export default {
   brand: { name: 'Sample App', icon: '/icon.png' },
@@ -40,6 +41,18 @@ export default {
       sections: [
         { type: 'hero', eyebrow: 'Support', title: 'We’re Here<br><em>to Help.</em>', image: '/icon.png' },
         { type: 'support', title: 'Get in Touch.', items: [{ icon: 'mail', title: 'Email', text: 'help@example.com', action: 'Write to Us', href: 'mailto:help@example.com' }, { icon: 'shield', title: 'Privacy', action: 'Read It', href: '/privacy' }] },
+      ],
+    },
+    about: {
+      title: 'About Sample App',
+      description: 'Who makes Sample App, and why.',
+      sections: [
+        { type: 'hero', eyebrow: 'About', title: 'Made With<br><em>Care.</em>', text: 'Why we built it, and who we are.', image: '/icon.png' },
+        { type: 'story', eyebrow: 'Our Story', title: 'It Started With One Problem.', image: '/icon.png', paragraphs: ['A first paragraph.', 'A second paragraph.'], signature: '— The Sample App team' },
+        { type: 'facts', title: 'In Numbers.', items: [{ value: '2026', label: 'Started' }, { value: '4', label: 'Languages' }, { value: '0', label: 'Ads' }] },
+        { type: 'grid', eyebrow: 'What We Believe', title: 'Our Promises.', items: [{ icon: 'lock', title: 'Private', text: 'Only you.' }, { icon: 'ban', title: 'No Ads', text: 'Ever.' }, { icon: 'heart', title: 'Simple', text: 'One tap.' }] },
+        { type: 'people', title: 'Who Makes It.', items: [{ name: 'Sample Maker', role: 'Founder', text: 'Builds the app.' }] },
+        { type: 'support', title: 'Say Hello.', items: [{ icon: 'mail', title: 'Email', text: 'help@example.com', action: 'Write to Us', href: 'mailto:help@example.com' }, { icon: 'shield', title: 'Privacy', action: 'Read It', href: '/privacy' }] },
       ],
     },
   },
